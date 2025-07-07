@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giftsy - Handmade Gifts in Your City</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, #ff4e50, #f9d423);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1s ease-out;
+}
+
+.welcome-message {
+  animation: fadeSlide 1s ease-out;
+}
+
+.welcome-message h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-message p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to right, #ff4e50, #f9d423);
+      color: white;
+      animation: slideDown 0.6s ease-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .contact-btn a {
+      background-color: #fff;
+      color: #ff4e50;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-btn a:hover {
+      background-color: #ffe3e3;
+      transform: scale(1.05);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: url('images/rakhi_bg.jpg') no-repeat center center/cover;
+      color: #fff;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .hero .btn {
+      background-color: #fff;
+      color: #ff4e50;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .hero .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .categories {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .categories h2 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .cat-card {
+      background-color: #fffafc;
+      padding: 0.8rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.1);
+      transition: transform 0.3s;
+      animation: fadeInUp 0.8s ease-in-out;
+      max-width: 300px;
+      flex: 1 1 300px;
+      cursor: pointer;
+    }
+
+    .cat-card:hover {
+      transform: scale(1.05);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cat-card p {
+      margin-top: 0.6rem;
+      font-weight: 600;
+    }
+
+    .instagram {
+      padding: 1.5rem;
+      text-align: center;
+      background-color: #fff0f6;
+    }
+
+    .instagram a {
+      color: #d81b60;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #ffe4ec;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #d81b60;
+      text-decoration: none;
+    }
+
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff3f3;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.8rem;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+
+    .sticky-bar a {
+      color: #ff4e50;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 5px solid #ffd1dc;
+      border-top-color: #ff4e50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .category-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cat-card {
+        width: 90%;
+        max-width: 90%;
+      }
+      .cat-card img {
+        height: 260px;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(0); }
+    }
+
+    .video-section {
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #fff8f4;
+}
+
+.video-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ff4e50;
+}
+
+.video-section video {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="welcome-overlay" id="welcomeOverlay">
+  <div class="welcome-message">
+    <h1>🎁 Welcome to Giftsy</h1>
+    <p>Explore our handmade love</p>
+  </div>
+</div>
+
+
+  <div class="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">🎁 Giftsy</div>
+    <div class="contact-btn">
+      <a href="tel:+918602931717" aria-label="Call Giftsy">Call Us</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Rakhi Gifts, Hampers & More</h1>
+    <p>Customized gifts, resin art, candles, rakhis – delivered to your doorstep in Khachrod</p>
+    <a href="#products" class="btn">Browse Gifts</a>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories" id="products">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <div class="cat-card"><img src="images/giftHamper.PNG" alt="Gift Hampers"><p>Gift Hampers</p></div>
+      <div class="cat-card"><img src="images/resin.jpg" alt="Resin Gifts"><p>Resin Gifts</p></div>
+      <div class="cat-card"><img src="images/candle.PNG" alt="Candles"><p>Candles</p></div>
+      <div class="cat-card"><img src="images/rakhi.PNG" alt="Rakhi Sets"><p>Rakhi Sets</p></div>
+      <div class="cat-card"><img src="images/bracelet1.PNG" alt="Bracelets"><p>Bracelet</p></div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+<section class="video-section">
+  <h2>Watch Our Gift Hampers</h2>
+  <video autoplay muted loop playsinline>
+    <source src="videos/clip01.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+
+  <!-- Instagram Link -->
+  <section class="instagram">
+    <p>See our work on Instagram: <a href="https://www.instagram.com/gift.sy04" target="_blank">@gift.sy04</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>📞 Call to order: <a href="tel:+918602931717">+91 86029 31717</a></p>
+    <p>📍  Available in Khachrod</p>
+    <p>&copy; 2025 Giftsy. All rights reserved.</p>
+  </footer>
+
+  <!-- Sticky CTA Bar -->
+  <div class="sticky-bar">
+    <a href="tel:+918602931717">📞 Call Now</a>
+    <a href="https://www.instagram.com/gift.sy04" target="_blank">📷 Instagram</a>
+  </div>
+
+  <!-- Lightbox Viewer -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Enlarged view">
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      document.querySelector('.preloader').style.display = 'none';
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.cat-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+   window.addEventListener('load', () => {
+    // Delay the welcome screen for 2.5 seconds
+    setTimeout(() => {
+      document.getElementById('welcomeOverlay').style.transition = 'opacity 0.6s ease';
+      document.getElementById('welcomeOverlay').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('welcomeOverlay').style.display = 'none';
+      }, 600); // Wait for fade-out
+    }, 2500); // Show welcome for 2.5s
+  });
+
+  </script>
+</body>
+</html>
